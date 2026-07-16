@@ -1,0 +1,6 @@
+[
+  {
+    "query": "What are the common symptoms of Acute COVID-19?",
+    "expected_chunks": [0, 1]
+  }
+]

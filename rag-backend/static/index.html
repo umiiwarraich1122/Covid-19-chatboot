@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCSI Retrieval Comparison Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-uni: #006B3F;
+    --emerald: #0D8A52;
+    --mint: #CFEFE0;
+    --blue-accent: #2563EB;
+    --bg-main: #FAFBFC;
+    --bg-white: #FFFFFF;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --border-light: #E5E7EB;
+    --border-hover: #D1D5DB;
+    --success: #10B981;
+    --font-body: 'Inter', sans-serif;
+    --radius-card: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  header {
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-light);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--green-uni);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    z-index: 10;
+  }
+
+  .upload-settings {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .upload-settings input[type="file"] {
+    display: none;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, var(--green-uni), var(--emerald));
+    color: var(--bg-white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .btn:hover { transform: scale(1.02); }
+  .btn-outline {
+    background: var(--bg-white);
+    color: var(--green-uni);
+    border: 1px solid var(--green-uni);
+  }
+  .btn-outline:hover { background: var(--mint); transform: none; }
+
+  .main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Input Box */
+  .search-box {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-box:focus-within {
+    border-color: var(--green-uni);
+    box-shadow: 0 4px 16px rgba(0, 107, 63, 0.08);
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+  .search-box input::placeholder { color: var(--text-muted); }
+
+  /* Dashboard */
+  .dashboard {
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .dashboard.active {
+    display: flex;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+  }
+
+  .pipeline-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header {
+    background: #F9FAFB;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .card-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+  .latency-badge {
+    font-size: 12px;
+    background: var(--mint);
+    color: var(--green-uni);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+
+  .card-body {
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card-body.open {
+    display: flex;
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .answer-box {
+    background: rgba(207, 239, 224, 0.15);
+    border-left: 3px solid var(--emerald);
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .chunks-box {
+    background: #F9FAFB;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  /* Table */
+  .table-container {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+  }
+  th {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  tr:last-child td { border-bottom: none; }
+  .highlight {
+    background: var(--mint);
+    color: var(--green-uni);
+    font-weight: 600;
+    border-radius: 6px;
+  }
+
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .loading.active { display: block; }
+  
+  .pulse {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--emerald);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse-ani 1.5s infinite;
+  }
+  @keyframes pulse-ani {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.5; }
+  }
+
+</style>
+</head>
+<body>
+
+  <header>
+    <div>PCSI Retrieval Comparison Dashboard</div>
+    <div class="upload-settings">
+      <label class="btn btn-outline" for="fileInput">Upload Document</label>
+      <input id="fileInput" type="file" accept=".pdf,.txt,.md" />
+      <span id="fileName"></span>
+      <span>Size:</span>
+      <input type="number" id="chunkSize" value="45" style="width: 50px;" />
+      <span>Overlap:</span>
+      <input type="number" id="chunkOverlap" value="10" style="width: 50px;" />
+      <button class="btn btn-outline" id="uploadBtn">Index</button>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; color: var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="queryInput" placeholder="Enter query to compare pipelines..." />
+        <button class="btn" id="searchBtn">Evaluate</button>
+      </div>
+
+      <div class="loading" id="loadingState">
+        <div class="pulse"></div> Running 4 pipelines concurrently...
+      </div>
+
+      <div class="dashboard" id="dashboard">
+        <h2 style="font-size: 18px; margin: 0; color: var(--text-primary);">
+          Results for: <span id="dashQuery" style="color: var(--green-uni);"></span>
+        </h2>
+        
+        <div class="cards-grid" id="cardsGrid">
+          <!-- Cards injected via JS -->
+        </div>
+
+        <div class="table-container">
+          <h3 style="margin: 0 0 16px 0; font-size: 16px;">Metrics Comparison</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Pipeline</th>
+                <th>Precision@K</th>
+                <th>Recall@K</th>
+                <th>MRR</th>
+                <th>NDCG@K</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody id="compareTableBody">
+              <!-- Rows injected via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const queryInput = document.getElementById("queryInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const loadingState = document.getElementById("loadingState");
+    const dashboard = document.getElementById("dashboard");
+    const cardsGrid = document.getElementById("cardsGrid");
+    const compareTableBody = document.getElementById("compareTableBody");
+    const fileInput = document.getElementById("fileInput");
+
+    fileInput.addEventListener("change", () => {
+      document.getElementById("fileName").textContent = fileInput.files[0] ? fileInput.files[0].name : "";
+    });
+
+    document.getElementById("uploadBtn").addEventListener("click", async () => {
+      if (!fileInput.files[0]) return alert("Please select a file.");
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      formData.append("chunk_size", document.getElementById("chunkSize").value);
+      formData.append("chunk_overlap", document.getElementById("chunkOverlap").value);
+      
+      const btn = document.getElementById("uploadBtn");
+      btn.textContent = "Indexing...";
+      try {
+        await fetch("/upload", { method: "POST", body: formData });
+        alert("Document indexed successfully!");
+      } catch (e) {
+        alert("Upload failed.");
+      }
+      btn.textContent = "Index";
+    });
+
+    async function evaluatePipelines() {
+      const q = queryInput.value.trim();
+      if (!q) return;
+      
+      dashboard.classList.remove("active");
+      loadingState.classList.add("active");
+      searchBtn.disabled = true;
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: q, k: 3 }),
+        });
+        const data = await res.json();
+        renderDashboard(q, data.pipelines);
+      } catch (err) {
+        alert("Evaluation failed.");
+      } finally {
+        loadingState.classList.remove("active");
+        searchBtn.disabled = false;
+      }
+    }
+
+    searchBtn.addEventListener("click", evaluatePipelines);
+    queryInput.addEventListener("keydown", (e) => { if (e.key === "Enter") evaluatePipelines(); });
+
+    function renderDashboard(query, pipelines) {
+      document.getElementById("dashQuery").textContent = query;
+      cardsGrid.innerHTML = "";
+      compareTableBody.innerHTML = "";
+
+      // Track max/min values for highlighting
+      let maxP = -1, maxR = -1, maxM = -1, maxN = -1, minL = Infinity;
+
+      pipelines.forEach(p => {
+        if (p.metrics.precision > maxP) maxP = p.metrics.precision;
+        if (p.metrics.recall > maxR) maxR = p.metrics.recall;
+        if (p.metrics.mrr > maxM) maxM = p.metrics.mrr;
+        if (p.metrics.ndcg > maxN) maxN = p.metrics.ndcg;
+        const lat = parseFloat(p.latency.replace("s",""));
+        if (lat < minL) minL = lat;
+      });
+
+      pipelines.forEach((p, idx) => {
+        // Build Card
+        const card = document.createElement("div");
+        card.className = "pipeline-card";
+        
+        let chunksHtml = p.retrieved_chunks.map((c, i) => `<div><b>[${i+1}]</b> ${c}</div>`).join('<hr style="border:0; border-top:1px solid #E5E7EB; margin:8px 0;"/>');
+        
+        card.innerHTML = `
+          <div class="card-header" onclick="this.nextElementSibling.classList.toggle('open')">
+            <h3>${p.pipeline}</h3>
+            <span class="latency-badge">${p.latency}</span>
+          </div>
+          <div class="card-body open">
+            <div>
+              <div class="section-title">Answer</div>
+              <div class="answer-box">${p.answer}</div>
+            </div>
+            <div>
+              <div class="section-title">Metrics</div>
+              <div style="display:flex; gap: 16px; font-size:13px;">
+                <span><b>P@K:</b> ${p.metrics.precision.toFixed(2)}</span>
+                <span><b>R@K:</b> ${p.metrics.recall.toFixed(2)}</span>
+                <span><b>MRR:</b> ${p.metrics.mrr.toFixed(2)}</span>
+                <span><b>NDCG:</b> ${p.metrics.ndcg.toFixed(2)}</span>
+              </div>
+            </div>
+            <div>
+              <div class="section-title">Retrieved Chunks (${p.chunks_count})</div>
+              <div class="chunks-box">${chunksHtml}</div>
+            </div>
+          </div>
+        `;
+        cardsGrid.appendChild(card);
+
+        // Build Table Row
+        const lat = parseFloat(p.latency.replace("s",""));
+        const row = document.createElement("tr");
+        
+        row.innerHTML = `
+          <td style="font-weight:500;">${p.pipeline}</td>
+          <td class="${p.metrics.precision === maxP && maxP > 0 ? 'highlight' : ''}">${p.metrics.precision.toFixed(2)}</td>
+          <td class="${p.metrics.recall === maxR && maxR > 0 ? 'highlight' : ''}">${p.metrics.recall.toFixed(2)}</td>
+          <td class="${p.metrics.mrr === maxM && maxM > 0 ? 'highlight' : ''}">${p.metrics.mrr.toFixed(2)}</td>
+          <td class="${p.metrics.ndcg === maxN && maxN > 0 ? 'highlight' : ''}">${p.metrics.ndcg.toFixed(2)}</td>
+          <td class="${lat === minL ? 'highlight' : ''}">${p.latency}</td>
+        `;
+        compareTableBody.appendChild(row);
+      });
+
+      dashboard.classList.add("active");
+    }
+  </script>
+</body>
+</html>

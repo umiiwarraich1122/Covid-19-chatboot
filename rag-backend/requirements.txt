@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+voyageai
+qdrant-client
+groq
+pypdf
+python-multipart
+rank_bm25
