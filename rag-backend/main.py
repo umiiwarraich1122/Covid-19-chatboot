@@ -9,12 +9,6 @@ import os
 
 app = FastAPI()
 
-app.mount("/assets", StaticFiles(directory="../covid-intel-frontend/dist/assets"), name="assets")
-
-@app.get("/")
-async def serve_frontend():
-    return FileResponse("../covid-intel-frontend/dist/index.html")
-
 
 app.add_middleware(
     CORSMiddleware,
