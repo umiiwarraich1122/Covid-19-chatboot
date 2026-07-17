@@ -4,6 +4,10 @@ import ChatArea from './components/ChatArea';
 import SettingsModal from './components/SettingsModal';
 import DocumentModal from './components/DocumentModal';
 import AnalyticsModal from './components/AnalyticsModal';
+import EvaluationModal from './components/EvaluationModal';
+import FaithfulnessModal from './components/FaithfulnessModal';
+import MrJudgeModal from './components/MrJudgeModal';
+import DiagnoseModal from './components/DiagnoseModal';
 
 export default function App() {
   const [activeModal, setActiveModal] = useState(null); // 'settings', 'documents', 'analytics'
@@ -68,6 +72,10 @@ export default function App() {
       {activeModal === 'settings' && <SettingsModal onClose={() => setActiveModal(null)} />}
       {activeModal === 'documents' && <DocumentModal onClose={() => setActiveModal(null)} />}
       {activeModal === 'analytics' && <AnalyticsModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'evaluation' && <EvaluationModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'faithful' && <FaithfulnessModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'mrjudge' && <MrJudgeModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'diagnose' && <DiagnoseModal onClose={() => setActiveModal(null)} />}
     </div>
   );
 }

@@ -27,6 +27,10 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     message: str
 
+class JudgeRequest(BaseModel):
+    query: str
+    reference_answer: str = ""
+
 @app.on_event("startup")
 async def startup_event():
     # Build index on startup
@@ -76,3 +80,7 @@ async def update_settings(settings: dict):
     if "chunk_size" in settings or "chunk_overlap" in settings:
         rag.build_index()
     return updated
+
+@app.post("/judge")
+async def evaluate_judge(req: JudgeRequest):
+    return rag.evaluate_with_judge(req.query, req.reference_answer)

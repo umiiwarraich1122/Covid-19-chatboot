@@ -1,4 +1,4 @@
-import { MessageSquare, PlusCircle, Settings, FileText, BarChart2 } from 'lucide-react';
+import { MessageSquare, PlusCircle, Settings, FileText, BarChart2, ClipboardCheck, ShieldCheck, Scale, Stethoscope } from 'lucide-react';
 
 export default function Sidebar({ chats, activeChatId, setActiveChatId, createNewChat, setActiveModal }) {
   return (
@@ -31,28 +31,71 @@ export default function Sidebar({ chats, activeChatId, setActiveChatId, createNe
         ))}
       </div>
       
-      <div className="p-4 border-t border-medical-100 space-y-2">
-        <button 
-          onClick={() => setActiveModal('documents')}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
-        >
-          <FileText size={18} className="text-medical-500" />
-          <span>Documents</span>
-        </button>
-        <button 
-          onClick={() => setActiveModal('analytics')}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
-        >
-          <BarChart2 size={18} className="text-medical-500" />
-          <span>Analytics</span>
-        </button>
-        <button 
-          onClick={() => setActiveModal('settings')}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
-        >
-          <Settings size={18} className="text-gray-500" />
-          <span>Settings</span>
-        </button>
+      <div className="p-4 border-t border-medical-100 bg-gray-50/50 space-y-6">
+        
+        {/* Box 1: Evaluation */}
+        <div className="space-y-2">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Evaluation</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-2 space-y-1 shadow-sm">
+            <button 
+              onClick={() => setActiveModal('mrjudge')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-all"
+            >
+              <div className="p-1.5 bg-indigo-100 text-indigo-600 rounded-md"><Scale size={16} /></div>
+              <span>Mr. Judge</span>
+            </button>
+            <button 
+              onClick={() => setActiveModal('faithful')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all"
+            >
+              <div className="p-1.5 bg-blue-100 text-blue-600 rounded-md"><ShieldCheck size={16} /></div>
+              <span>Faithful Eval</span>
+            </button>
+            <button 
+              onClick={() => setActiveModal('evaluation')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition-all"
+            >
+              <div className="p-1.5 bg-purple-100 text-purple-600 rounded-md"><ClipboardCheck size={16} /></div>
+              <span>Evaluation Data</span>
+            </button>
+            <button 
+              onClick={() => setActiveModal('diagnose')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-all"
+            >
+              <div className="p-1.5 bg-teal-100 text-teal-600 rounded-md"><Stethoscope size={16} /></div>
+              <span>Diagnose</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Box 2: Document Upload */}
+        <div className="space-y-2">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Document Upload</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-2 space-y-1 shadow-sm">
+            <button 
+              onClick={() => setActiveModal('documents')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 transition-all"
+            >
+              <div className="p-1.5 bg-green-100 text-green-600 rounded-md"><FileText size={16} /></div>
+              <span>Documents</span>
+            </button>
+            <button 
+              onClick={() => setActiveModal('analytics')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-700 transition-all"
+            >
+              <div className="p-1.5 bg-orange-100 text-orange-600 rounded-md"><BarChart2 size={16} /></div>
+              <span>Analytics</span>
+            </button>
+            <button 
+              onClick={() => setActiveModal('settings')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-all"
+            >
+              <div className="p-1.5 bg-gray-200 text-gray-600 rounded-md"><Settings size={16} /></div>
+              <span>Set the Chunks</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

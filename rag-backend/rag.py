@@ -387,3 +387,119 @@ def consultation_pipeline(query, stream_yield):
         "chunks": [{"text": h["text"], "source": h["source"]} for h in hits]
     }
     yield "\n\n__JSON_PAYLOAD__" + json.dumps(payload)
+
+# ---------- Mr. Judge Evaluation ----------
+JUDGE_PROMPT = """You are an impartial AI Judge.
+Evaluate the Generated Answer using ONLY the Retrieved Context.
+
+Rules:
+* Never use your own knowledge.
+* Never guess missing facts.
+* Ignore writing style.
+* Ignore grammar.
+* Ignore answer length.
+* Ignore formatting.
+* Only determine whether the Generated Answer is supported by the Retrieved Context.
+* If information is missing from the context, mark it as Unsupported.
+* If the answer contains facts not present in the context, treat them as hallucinations.
+
+Perform the following steps:
+1. Break the Generated Answer into factual claims.
+2. Verify every claim against the Retrieved Context.
+3. Count Supported Claims.
+4. Count Unsupported Claims.
+5. Calculate Faithfulness = Supported Claims / Total Claims * 100
+
+Return ONLY JSON in this exact format:
+{
+  "judge_label": "Good" | "Hallucinated" | "Irrelevant" | "Refused",
+  "faithfulness_score": 95,
+  "supported_claims": 19,
+  "unsupported_claims": 1,
+  "hallucinations": [
+    "Unsupported claim 1"
+  ],
+  "reason": "Short explanation"
+}"""
+
+def evaluate_with_judge(query, reference_answer=""):
+    k = SETTINGS["top_k"]
+    # 1. Retrieve
+    dense_hits = retrieve_dense(query, k=k*2)
+    sparse_hits = retrieve_sparse(query, k=k*2)
+    
+    rrf_scores = {}
+    chunk_map = {}
+    for rank, h in enumerate(dense_hits):
+        cid = h["id"]
+        rrf_scores[cid] = rrf_scores.get(cid, 0.0) + 1.0 / (60 + rank + 1)
+        chunk_map[cid] = h
+    for rank, h in enumerate(sparse_hits):
+        cid = h["id"]
+        rrf_scores[cid] = rrf_scores.get(cid, 0.0) + 1.0 / (60 + rank + 1)
+        chunk_map[cid] = h
+        
+    sorted_cids = sorted(rrf_scores.keys(), key=lambda cid: rrf_scores[cid], reverse=True)[:k*2]
+    hits_hybrid = [chunk_map[cid] for cid in sorted_cids]
+    
+    if hits_hybrid:
+        texts = [h["text"] for h in hits_hybrid]
+        try:
+            rerank_resp = rerank_voyage.rerank(query, texts, model=SETTINGS["rerank_model"], top_k=k)
+            hits = [hits_hybrid[r.index] for r in rerank_resp.results]
+        except Exception as e:
+            print(f"Rerank error: {e}")
+            hits = hits_hybrid[:k]
+    else:
+        hits = []
+
+    context_str = "\n".join(f"[{i + 1}] {h['text']}" for i, h in enumerate(hits))
+
+    if not hits:
+        generated_answer = "I cannot find the answer to this question in the provided project documents."
+    else:
+        user_msg = f"---\nRETRIEVED CONTEXT:\n{context_str}\n---\n\nUSER QUESTION: \n{query}\n\nresponse:\n"
+        try:
+            resp = groq.chat.completions.create(
+                model=SETTINGS["gen_model"],
+                temperature=0,
+                max_tokens=SETTINGS["max_tokens"],
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_msg},
+                ]
+            )
+            generated_answer = resp.choices[0].message.content
+        except Exception as e:
+            generated_answer = f"Error generating answer: {e}"
+
+    judge_user_msg = f"Retrieved Context:\n{context_str}\n\nGenerated Answer:\n{generated_answer}"
+
+    try:
+        judge_resp = groq.chat.completions.create(
+            model=SETTINGS["gen_model"],
+            temperature=0,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": JUDGE_PROMPT},
+                {"role": "user", "content": judge_user_msg},
+            ]
+        )
+        judge_result = json.loads(judge_resp.choices[0].message.content)
+    except Exception as e:
+        judge_result = {
+            "judge_label": "Refused",
+            "faithfulness_score": 0,
+            "supported_claims": 0,
+            "unsupported_claims": 0,
+            "hallucinations": [],
+            "reason": f"Evaluation failed: {str(e)}"
+        }
+
+    return {
+        "query": query,
+        "retrieved_context": context_str,
+        "generated_answer": generated_answer,
+        "golden_answer": reference_answer,
+        "judge_evaluation": judge_result
+    }

@@ -1,0 +1,407 @@
+[
+  {
+    "id": "Q1",
+    "question": "I just tested positive for COVID-19 and I have asthma. What are the outpatient medication options to keep me out of the hospital?",
+    "generated_answer": "Based on the provided context, for mild-to-moderate disease in outpatients at high risk of progression, including those with asthma, treatment options include: Antiviral therapy: Ritonavir-boosted nirmatrelvir (Paxlovid) can be considered after weighing risks and benefits [1]. Supportive care: Antipyretics and hydration are recommended alongside antiviral therapy [1]. It is essential to consult with a healthcare professional to determine the best course of treatment for your specific situation... Monitoring: Regular monitoring of your condition, including oxygen saturation levels, is crucial to ensure that your asthma is not worsening due to COVID-19 [2]. Asthma management: Continue to follow your usual asthma management plan...",
+    "reference_answer": "For mild-to-moderate COVID-19 in outpatients who are at a higher risk of developing severe disease (such as individuals with asthma), the primary medical options include early antiviral therapies. These consist of ritonavir-boosted nirmatrelvir (Paxlovid) or remdesivir, which should be started early in the infection. Supportive measures, such as staying hydrated and using antipyretics, are also recommended.",
+    "claims": [
+      {
+        "text": "Based on the provided context, for mild-to-moderate disease in outpatients at high risk of progression, including those with asthma, treatment options include: Antiviral therapy: Ritonavir-boosted nirmatrelvir (Paxlovid) can be considered after weighing risks and benefits [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Supportive care: Antipyretics and hydration are recommended alongside antiviral therapy [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "It is essential to consult with a healthcare professional to determine the best course of treatment for your specific situation..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Monitoring: Regular monitoring of your condition, including oxygen saturation levels, is crucial to ensure that your asthma is not worsening due to COVID-19 [2].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Asthma management: Continue to follow your usual asthma management plan...",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q2",
+    "question": "What is the standard inpatient management protocol for a hospitalized COVID-19 patient requiring supplemental oxygen?",
+    "generated_answer": "Based on the provided context, the standard inpatient management protocol for a hospitalized COVID-19 patient requiring supplemental oxygen includes: Systemic corticosteroids: e.g., dexamethasone [1] Intravenous remdesivir: as indicated [1] Immunomodulatory therapy: e.g., baricitinib or tocilizumab as indicated [1] Prophylactic anticoagulation: routinely administered to prevent venous thromboembolism unless contraindicated [1] This protocol is specifically designed for hospitalized patients requiring supplemental oxygen, as indicated in the provided context.",
+    "reference_answer": "The standard inpatient management protocol for COVID-19 patients requiring supplemental oxygen includes: 1) Systemic corticosteroids (specifically dexamethasone), 2) Intravenous remdesivir, and 3) Immunomodulatory therapies (such as baricitinib or tocilizumab) as clinically indicated. Additionally, routine prophylactic anticoagulation is administered to prevent venous thromboembolism (VTE), provided there are no contraindications.",
+    "claims": [
+      {
+        "text": "Based on the provided context, the standard inpatient management protocol for a hospitalized COVID-19 patient requiring supplemental oxygen includes: Systemic corticosteroids: e.g., dexamethasone [1] Intravenous remdesivir: as indicated [1] Immunomodulatory therapy: e.g., baricitinib or tocilizumab as indicated [1] Prophylactic anticoagulation: routinely administered to prevent venous thromboembolism unless contraindicated [1] This protocol is specifically designed for hospitalized patients requiring supplemental oxygen, as indicated in the provided context.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q3",
+    "question": "What are the most common symptoms of an active COVID infection, and when do they become severe enough to look like ARDS?",
+    "generated_answer": "According to the provided context, the most common symptoms... include: Fatigue, Myalgias, Loss of taste/smell... Severe cases can progress to ARDS... The context does not provide a specific threshold... [Generates external ARDS Criteria: Bilateral opacities, PaO2/FiO2 ratio <= 300 mmHg, etc.]... I cannot find the answer to this question in the provided project documents regarding the specific threshold...",
+    "reference_answer": "Common symptoms of active COVID-19 include fever, cough, shortness of breath (dyspnea), fatigue, muscle aches (myalgias), loss of taste or smell, sore throat, congestion, and digestive issues like nausea or diarrhea. The infection escalates to Acute Respiratory Distress Syndrome (ARDS) when it progresses to severe respiratory failure, often characterized by worsening difficulty breathing and severe alveolar damage requiring mechanical breathing support.",
+    "claims": [
+      {
+        "text": "According to the provided context, the most common symptoms..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "include: Fatigue, Myalgias, Loss of taste/smell..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Severe cases can progress to ARDS..",
+        "supported": false,
+        "evidence": "No supporting evidence found in context. Generated from external knowledge."
+      },
+      {
+        "text": "The context does not provide a specific threshold..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "[Generates external ARDS Criteria: Bilateral opacities, PaO2/FiO2 ratio <= 300 mmHg, etc.]..",
+        "supported": false,
+        "evidence": "No supporting evidence found in context. Generated from external knowledge."
+      }
+    ]
+  },
+  {
+    "id": "Q4",
+    "question": "What specific inflammatory biomarkers and chest imaging findings support a diagnosis of severe acute COVID-19?",
+    "generated_answer": "According to the provided context, the following specific inflammatory biomarkers and chest imaging findings support a diagnosis of severe acute COVID-19: Inflammatory Biomarkers: Elevated inflammatory markers (CRP, ferritin, D-dimer) [1] Chest Imaging Findings: Chest imaging showing bilateral ground-glass opacities [1] These findings are indicative of severe acute COVID-19 and may warrant further investigation and management.",
+    "reference_answer": "In severe acute cases of COVID-19, diagnosis is supported by chest imaging showing bilateral ground-glass opacities. Supporting laboratory findings include elevated inflammatory markers, specifically C-reactive protein (CRP), ferritin, and D-dimer.",
+    "claims": [
+      {
+        "text": "According to the provided context, the following specific inflammatory biomarkers and chest imaging findings support a diagnosis of severe acute COVID-19: Inflammatory Biomarkers: Elevated inflammatory markers (CRP, ferritin, D-dimer) [1] Chest Imaging Findings: Chest imaging showing bilateral ground-glass opacities [1] These findings are indicative of severe acute COVID-19 and may warrant further investigation and management.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q5",
+    "question": "I am 20 weeks pregnant and just tested positive for COVID. Can I pass the virus directly to my unborn baby?",
+    "generated_answer": "Based on the provided context, the risk of direct transmission of SARS-CoV-2 to the unborn baby is considered rare. According to the context, true transplacental vertical transmission to the fetus is estimated to be less than 2-3% of cases [1], [5]. Clinical Features and Pregnancy... the direct transmission... is not explicitly stated as a common occurrence. Guidelines for Delivery: Delivery is guided by standard obstetric indications rather than the presence of COVID-19 alone, unless maternal respiratory status deteriorates critically [4]...",
+    "reference_answer": "While the COVID-19 virus can infect the placenta and cause certain changes (such as inflammation or fibrin build-up), actual transmission of the virus across the placenta to your baby (called vertical transmission) is very rare, occurring in less than 2% to 3% of cases.",
+    "claims": [
+      {
+        "text": "Based on the provided context, the risk of direct transmission of SARS-CoV-2 to the unborn baby is considered rare.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "According to the context, true transplacental vertical transmission to the fetus is estimated to be less than 2-3% of cases [1], [5].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Clinical Features and Pregnancy..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "the direct transmission..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "is not explicitly stated as a common occurrence.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q6",
+    "question": "What is the target SpO2 for a symptomatic pregnant patient with COVID-19, and why is this threshold different?",
+    "generated_answer": "According to the provided context, the target SpO2 for symptomatic pregnant patients with COVID-19 is >=95% [1]. This threshold is different due to the physiological alterations that occur during pregnancy, which make pregnant individuals highly vulnerable to severe respiratory pathogens. [Lists physiological shifts: Th2-dominant environment, elevated diaphragm, increased oxygen consumption]... Maintaining maternal oxygenation is crucial to ensure adequate fetal oxygen supply. The target SpO2 of >=95% is likely chosen to minimize the risk of fetal hypoxia...",
+    "reference_answer": "The target maternal oxygen saturation (SpO2) for a symptomatic pregnant patient with COVID-19 is >=95% (or a partial pressure of oxygen, PaO2, of >=70 mmHg). This threshold is maintained strictly higher than in non-pregnant populations to guarantee an adequate and continuous oxygen supply to the fetus.",
+    "claims": [
+      {
+        "text": "According to the provided context, the target SpO2 for symptomatic pregnant patients with COVID-19 is >=95% [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "This threshold is different due to the physiological alterations that occur during pregnancy, which make pregnant individuals highly vulnerable to severe respiratory pathogens.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "[Lists physiological shifts: Th2-dominant environment, elevated diaphragm, increased oxygen consumption]..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Maintaining maternal oxygenation is crucial to ensure adequate fetal oxygen supply.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "The target SpO2 of >=95% is likely chosen to minimize the risk of fetal hypoxia...",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q7",
+    "question": "Why are pregnant women at a higher risk for severe complications if they catch COVID-19?",
+    "generated_answer": "Pregnant women are at a higher risk for severe complications if they catch COVID-19 due to several physiological alterations that occur during pregnancy [3]. These changes include: Shift toward a Th2-dominant immunological environment... Elevated diaphragm levels reducing functional residual capacity... Increased oxygen consumption... Additionally, SARS-CoV-2 can infect the placenta by binding to ACE2 receptors, which can lead to adverse perinatal outcomes [3].",
+    "reference_answer": "Pregnancy changes your body's natural state in ways that make you more vulnerable to respiratory viruses like COVID-19. Key reasons include: 1) A shift in the immune system to a Th2-dominant state, 2) The growing baby pushing up on the diaphragm, which reduces lung capacity, and 3) An overall increase in oxygen consumption. These normal physiological adjustments make it harder to fight off severe lung infections.",
+    "claims": [
+      {
+        "text": "Pregnant women are at a higher risk for severe complications if they catch COVID-19 due to several physiological alterations that occur during pregnancy [3].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "These changes include: Shift toward a Th2-dominant immunological environment..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Elevated diaphragm levels reducing functional residual capacity..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Increased oxygen consumption..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Additionally, SARS-CoV-2 can infect the placenta by binding to ACE2 receptors, which can lead to adverse perinatal outcomes [3].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q8",
+    "question": "What is the recommended fetal monitoring and ultrasound schedule for a patient infected with SARS-CoV-2 during her first trimester?",
+    "generated_answer": "Based on the provided context, the recommended fetal monitoring and ultrasound schedule for a patient infected with SARS-CoV-2 during her first trimester includes: Detailed fetal anatomical ultrasounds [1] Third-trimester growth scans to monitor for fetal growth restriction [1]... In addition to ultrasounds, the patient's maternal oxygenation should be closely monitored using pulse oximetry [2], and fetal heart rate monitoring should be performed if the patient is at a viable gestational age [2].",
+    "reference_answer": "For patients infected with SARS-CoV-2 during the first trimester, clinical guidelines recommend scheduling a detailed fetal anatomical ultrasound. This should be followed by third-trimester growth scans to closely monitor the baby for signs of fetal growth restriction.",
+    "claims": [
+      {
+        "text": "Based on the provided context, the recommended fetal monitoring and ultrasound schedule for a patient infected with SARS-CoV-2 during her first trimester includes: Detailed fetal anatomical ultrasounds [1] Third-trimester growth scans to monitor for fetal growth restriction [1]..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "In addition to ultrasounds, the patient's maternal oxygenation should be closely monitored using pulse oximetry [2], and fetal heart rate monitoring should be performed if the patient is at a viable gestational age [2].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q9",
+    "question": "How do the mRNA vaccines like Pfizer or Moderna actually work inside my body to build immunity?",
+    "generated_answer": "The mRNA vaccines, such as Pfizer-BioNTech and Moderna, work by delivering lipid nanoparticle-encapsulated mRNA to host cells. This mRNA instructs the cells to transiently express the spike protein... [explains step-by-step translation, spike expression, antibody/T-cell activation]... I cannot find any information in the provided context about the specific details of how the immune system recognizes...",
+    "reference_answer": "mRNA vaccines work by introducing a temporary genetic instruction booklet. They deliver mRNA wrapped inside tiny fat bubbles (lipid nanoparticles). Once inside, your host cells read the mRNA and temporarily produce a harmless copy of the virus's 'spike protein.' Your immune system recognizes this protein as foreign and builds neutralizing antibodies and protective T-cells to fight it off if you ever encounter the real virus.",
+    "claims": [
+      {
+        "text": "The mRNA vaccines, such as Pfizer-BioNTech and Moderna, work by delivering lipid nanoparticle-encapsulated mRNA to host cells.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "This mRNA instructs the cells to transiently express the spike protein..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "[explains step-by-step translation, spike expression, antibody/T-cell activation]..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "I cannot find any information in the provided context about the specific details of how the immune system recognizes...",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "question": "Are there any groups of people who absolutely cannot get the COVID-19 vaccine due to allergies?",
+    "generated_answer": "According to the provided documentation, there are specific groups of people who absolutely cannot get the COVID-19 vaccine due to allergies. Individuals with a documented history of severe allergic reaction (anaphylaxis) to a previous dose or to any component of the vaccine (e.g., polyethylene glycol) are considered absolute contraindications... The provided documentation does not list any other allergies...",
+    "reference_answer": "Yes, but this group is very small. The only absolute reason someone cannot receive the vaccine due to allergies is if they have a medically documented history of a severe, life-threatening allergic reaction (anaphylaxis) to a previous dose of the vaccine or to any of its specific ingredients, such as polyethylene glycol (PEG).",
+    "claims": [
+      {
+        "text": "According to the provided documentation, there are specific groups of people who absolutely cannot get the COVID-19 vaccine due to allergies.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Individuals with a documented history of severe allergic reaction (anaphylaxis) to a previous dose or to any component of the vaccine (e.g., polyethylene glycol) are considered absolute contraindications..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "The provided documentation does not list any other allergies...",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "question": "What are the rare but serious adverse events associated with mRNA and adenoviral vector vaccine platforms?",
+    "generated_answer": "According to the provided context, the rare but serious adverse events... are: Myocarditis and pericarditis, primarily observed in young males within a week of receiving mRNA doses [1]. Thrombosis with thrombocytopenia syndrome (TTS), associated with adenoviral vector platforms [1] and [2]. Multisystem Inflammatory Syndrome in Children (MIS-C)... which may be triggered by an aberrant, delayed immune response to COVID-19 infection [5].",
+    "reference_answer": "Rare but serious vaccine-associated adverse events include: 1) Myocarditis and pericarditis (heart inflammation), which have been observed primarily in young males within one week of receiving an mRNA vaccine dose. 2) Thrombosis with Thrombocytopenia Syndrome (TTS)\u00e2\u20ac\u201da rare condition involving blood clots and low platelet counts\u00e2\u20ac\u201dwhich has historically been associated with adenoviral vector vaccine platforms.",
+    "claims": [
+      {
+        "text": "According to the provided context, the rare but serious adverse events..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "are: Myocarditis and pericarditis, primarily observed in young males within a week of receiving mRNA doses [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Thrombosis with thrombocytopenia syndrome (TTS), associated with adenoviral vector platforms [1] and [2].",
+        "supported": false,
+        "evidence": "No supporting evidence found in context. Generated from external knowledge."
+      },
+      {
+        "text": "Multisystem Inflammatory Syndrome in Children (MIS-C)..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "which may be triggered by an aberrant, delayed immune response to COVID-19 infection [5].",
+        "supported": false,
+        "evidence": "No supporting evidence found in context. Generated from external knowledge."
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "question": "If the COVID vaccine doesn't completely stop me from getting infected as new variants emerge, why should I still get it?",
+    "generated_answer": "While COVID-19 vaccines may not provide complete protection against infection due to the emergence of novel viral variants, they still offer significant benefits. According to the provided context, vaccine-induced sterilizing immunity against infection wanes over time [1]. However, cellular immunity remains highly protective against severe outcomes [1]. Key Benefits: Reduced risk of severe disease... Protection against severe outcomes... Prevention of complications...",
+    "reference_answer": "While the antibodies that block infection entirely (sterilizing immunity) can fade or become less effective against new variants over time, the vaccine builds strong cellular immunity (T-cell response). This cellular defense remains highly effective at protecting you from severe disease, hospitalization, and death, even if you do get infected.",
+    "claims": [
+      {
+        "text": "While COVID-19 vaccines may not provide complete protection against infection due to the emergence of novel viral variants, they still offer significant benefits.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "According to the provided context, vaccine-induced sterilizing immunity against infection wanes over time [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "However, cellular immunity remains highly protective against severe outcomes [1].",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Key Benefits: Reduced risk of severe disease..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Protection against severe outcomes..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "question": "My 10-year-old had mild COVID a month ago. Now they have a persistent high fever, bloodshot eyes, and severe stomach pain. What should I do?",
+    "generated_answer": "Based on the provided context, your child's symptoms may be indicative of Multisystem Inflammatory Syndrome in Children (MIS-C)... Symptoms Matching MIS-C: Persistent high fever, Bloodshot eyes (non-purulent conjunctivitis), Severe stomach pain... Recommended Course of Action: Seek Medical Attention Immediately... Provide Detailed Medical History... Diagnostic Testing... Hospitalization...",
+    "reference_answer": "You should seek urgent medical attention immediately. These symptoms\u00e2\u20ac\u201dpersistent fever, bloodshot eyes (conjunctivitis), and severe abdominal pain\u00e2\u20ac\u201doccurring 2 to 6 weeks after a COVID-19 infection are key signs of a rare but serious post-viral condition called Multisystem Inflammatory Syndrome in Children (MIS-C). Children with this condition require prompt hospital admission, often in a pediatric intensive care unit (PICU), for close evaluation and treatment.",
+    "claims": [
+      {
+        "text": "Based on the provided context, your child's symptoms may be indicative of Multisystem Inflammatory Syndrome in Children (MIS-C)..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Symptoms Matching MIS-C: Persistent high fever, Bloodshot eyes (non-purulent conjunctivitis), Severe stomach pain..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Recommended Course of Action: Seek Medical Attention Immediately..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Provide Detailed Medical History..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Diagnostic Testing..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "question": "What are the diagnostic criteria and mandatory cardiac investigations required to confirm a diagnosis of MIS-C?",
+    "generated_answer": "To confirm a diagnosis of Multisystem Inflammatory Syndrome in Children (MIS-C), the following diagnostic criteria must be met: Evidence of recent SARS-CoV-2 infection... Involvement of two or more organ systems, Fever, Exclusion of alternative infectious diagnoses... Mandatory Cardiac Investigations: An echocardiogram is mandatory to evaluate for: Coronary artery aneurysms, Myocardial dysfunction...",
+    "reference_answer": "To confirm a diagnosis of MIS-C, the patient must meet criteria including a persistent fever (typically >=38.0 C for >=3 days), evidence of recent SARS-CoV-2 infection (via positive RT-PCR, antigen, or antibody serology), involvement of two or more organ systems, and the strict exclusion of alternative infectious causes like sepsis. Diagnostically, laboratory workup must show marked systemic inflammation (elevated CRP, ESR, procalcitonin, or ferritin) and elevated cardiac biomarkers (NT-proBNP and troponin). Finally, a cardiac echocardiogram is mandatory to evaluate for myocardial dysfunction and coronary artery aneurysms.",
+    "claims": [
+      {
+        "text": "To confirm a diagnosis of Multisystem Inflammatory Syndrome in Children (MIS-C), the following diagnostic criteria must be met: Evidence of recent SARS-CoV-2 infection..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Involvement of two or more organ systems, Fever, Exclusion of alternative infectious diagnoses..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Mandatory Cardiac Investigations: An echocardiogram is mandatory to evaluate for: Coronary artery aneurysms, Myocardial dysfunction...",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "question": "What is the first-line pharmacotherapy regimen for a pediatric patient admitted to the PICU with MIS-C?",
+    "generated_answer": "Based on the provided context, the first-line medical therapy for pediatric patients admitted to the PICU with Multisystem Inflammatory Syndrome in Children (MIS-C) consists of: Intravenous Immunoglobulin (IVIG)... Systemic Corticosteroids (e.g., methylprednisolone)... Additionally, Low-dose Aspirin is initiated for its antiplatelet effects to prevent coronary artery thrombosis, unless contraindicated by active bleeding.",
+    "reference_answer": "The standard first-line pharmacotherapy regimen for a pediatric patient with MIS-C consists of high-dose Intravenous Immunoglobulin (IVIG) administered in combination with systemic corticosteroids (typically methylprednisolone). Additionally, low-dose aspirin is initiated for antiplatelet therapy to prevent coronary artery thrombosis, provided there is no active bleeding contraindication.",
+    "claims": [
+      {
+        "text": "Based on the provided context, the first-line medical therapy for pediatric patients admitted to the PICU with Multisystem Inflammatory Syndrome in Children (MIS-C) consists of: Intravenous Immunoglobulin (IVIG)..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Systemic Corticosteroids (e.g., methylprednisolone)..",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      },
+      {
+        "text": "Additionally, Low-dose Aspirin is initiated for its antiplatelet effects to prevent coronary artery thrombosis, unless contraindicated by active bleeding.",
+        "supported": true,
+        "evidence": "Matching sentence from context: '...'"
+      }
+    ]
+  }
+]
