@@ -19,8 +19,13 @@ DOCS_DIR = os.path.join(os.path.dirname(__file__), "docs")
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 COLLECTION = "covid_intel_docs"
 
-os.makedirs(DOCS_DIR, exist_ok=True)
-os.makedirs(ASSETS_DIR, exist_ok=True)
+try:
+    os.makedirs(DOCS_DIR, exist_ok=True)
+    os.makedirs(ASSETS_DIR, exist_ok=True)
+except OSError:
+    # Vercel Serverless environment has a read-only file system (except /tmp)
+    # We ignore this error on startup so the function doesn't crash with FUNCTION_INVOCATION_FAILED.
+    pass
 
 # State
 SETTINGS = {
