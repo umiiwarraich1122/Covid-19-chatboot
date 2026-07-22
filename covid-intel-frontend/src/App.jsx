@@ -8,6 +8,8 @@ import EvaluationModal from './components/EvaluationModal';
 import FaithfulnessModal from './components/FaithfulnessModal';
 import MrJudgeModal from './components/MrJudgeModal';
 import DiagnoseModal from './components/DiagnoseModal';
+import GraphRAGModal from './components/GraphRAGModal';
+import GlobalSearchModal from './components/GlobalSearchModal';
 
 export default function App() {
   const [activeModal, setActiveModal] = useState(null); // 'settings', 'documents', 'analytics'
@@ -76,6 +78,8 @@ export default function App() {
       {activeModal === 'faithful' && <FaithfulnessModal onClose={() => setActiveModal(null)} />}
       {activeModal === 'mrjudge' && <MrJudgeModal onClose={() => setActiveModal(null)} />}
       {activeModal === 'diagnose' && <DiagnoseModal onClose={() => setActiveModal(null)} />}
+      {activeModal === 'graphrag' && <GraphRAGModal onClose={() => setActiveModal(null)} onOpenGlobalSearch={() => setActiveModal('globalsearch')} />}
+      {activeModal === 'globalsearch' && <GlobalSearchModal onClose={() => setActiveModal(null)} onBackToGraphRAG={() => setActiveModal('graphrag')} />}
     </div>
   );
 }

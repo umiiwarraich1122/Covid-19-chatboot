@@ -1,4 +1,4 @@
-import { MessageSquare, PlusCircle, Settings, FileText, BarChart2, ClipboardCheck, ShieldCheck, Scale, Stethoscope } from 'lucide-react';
+import { MessageSquare, PlusCircle, Settings, FileText, BarChart2, ClipboardCheck, ShieldCheck, Scale, Stethoscope, Globe } from 'lucide-react';
 
 export default function Sidebar({ chats, activeChatId, setActiveChatId, createNewChat, setActiveModal }) {
   return (
@@ -33,6 +33,22 @@ export default function Sidebar({ chats, activeChatId, setActiveChatId, createNe
       
       <div className="p-4 border-t border-medical-100 bg-gray-50/50 space-y-6">
         
+        {/* Box 0: GraphRAG */}
+        <div className="space-y-2">
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">GraphRAG Pipeline</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-2 space-y-1 shadow-sm">
+            <button 
+              onClick={() => setActiveModal('graphrag')}
+              className="w-full flex items-center gap-3 p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-700 transition-all"
+            >
+              <div className="p-1.5 bg-rose-100 text-rose-600 rounded-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </div>
+              <span>GraphRAG Studio</span>
+            </button>
+          </div>
+        </div>
+
         {/* Box 1: Evaluation */}
         <div className="space-y-2">
           <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Evaluation</h2>

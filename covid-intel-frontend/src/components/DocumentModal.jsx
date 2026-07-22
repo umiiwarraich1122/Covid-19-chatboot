@@ -56,9 +56,28 @@ export default function DocumentModal({ onClose }) {
       <div className="glass w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden max-h-[80vh]">
         <div className="px-6 py-4 border-b border-medical-100 flex justify-between items-center bg-white/50">
           <h2 className="text-xl font-bold text-medical-900">Document Management</h2>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
-            <X size={20} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={async () => {
+                if (!window.confirm("Are you sure you want to delete all documents?")) return;
+                try {
+                  for (const doc of docs) {
+                    await fetch(`/documents/${doc.name}`, { method: 'DELETE' });
+                  }
+                  await fetchDocs();
+                } catch (e) {
+                  console.error(e);
+                }
+              }}
+              disabled={docs.length === 0}
+              className="px-3 py-1 bg-red-50 text-red-600 rounded hover:bg-red-100 text-sm font-medium transition-colors disabled:opacity-50"
+            >
+              Reset All
+            </button>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
+              <X size={20} />
+            </button>
+          </div>
         </div>
         
         <div className="p-6 flex-1 overflow-y-auto bg-white/30">

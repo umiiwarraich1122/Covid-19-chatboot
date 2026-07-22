@@ -10,7 +10,9 @@ export default defineConfig({
       '/documents': 'http://127.0.0.1:8000',
       '/analytics': 'http://127.0.0.1:8000',
       '/settings': 'http://127.0.0.1:8000',
-      '/judge': 'http://127.0.0.1:8000'
+      '/judge': 'http://127.0.0.1:8000',
+      '/graphrag': 'http://127.0.0.1:8000',
+      '/global': 'http://127.0.0.1:8000'
     }
   }
 })
