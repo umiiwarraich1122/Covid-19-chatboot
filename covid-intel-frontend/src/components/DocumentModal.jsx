@@ -7,7 +7,7 @@ export default function DocumentModal({ onClose }) {
 
   const fetchDocs = async () => {
     try {
-      const res = await fetch('/documents');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/documents`);
       const data = await res.json();
       setDocs(data.documents || []);
     } catch (e) {
@@ -28,7 +28,7 @@ export default function DocumentModal({ onClose }) {
 
     setUploading(true);
     try {
-      await fetch('/documents', {
+      await fetch(`${import.meta.env.VITE_API_URL || ''}/documents`, {
         method: 'POST',
         body: formData
       });
@@ -42,7 +42,7 @@ export default function DocumentModal({ onClose }) {
 
   const handleDelete = async (filename) => {
     try {
-      await fetch(`/documents/${filename}`, {
+      await fetch(`${import.meta.env.VITE_API_URL || ''}/documents/${filename}`, {
         method: 'DELETE'
       });
       await fetchDocs();
@@ -62,7 +62,7 @@ export default function DocumentModal({ onClose }) {
                 if (!window.confirm("Are you sure you want to delete all documents?")) return;
                 try {
                   for (const doc of docs) {
-                    await fetch(`/documents/${doc.name}`, { method: 'DELETE' });
+                    await fetch(`${import.meta.env.VITE_API_URL || ''}/documents/${doc.name}`, { method: 'DELETE' });
                   }
                   await fetchDocs();
                 } catch (e) {

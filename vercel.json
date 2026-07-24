@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "rag-backend/main.py",
-      "use": "@vercel/python"
-    },
-    {
       "src": "covid-intel-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
@@ -14,26 +10,6 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/chat",
-      "destination": "/rag-backend/main.py"
-    },
-    {
-      "source": "/documents",
-      "destination": "/rag-backend/main.py"
-    },
-    {
-      "source": "/settings",
-      "destination": "/rag-backend/main.py"
-    },
-    {
-      "source": "/analytics",
-      "destination": "/rag-backend/main.py"
-    },
-    {
-      "source": "/judge",
-      "destination": "/rag-backend/main.py"
-    },
     {
       "source": "/(.*)",
       "destination": "/covid-intel-frontend/$1"

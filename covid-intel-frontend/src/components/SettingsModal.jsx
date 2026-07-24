@@ -12,7 +12,7 @@ export default function SettingsModal({ onClose }) {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetch('/settings')
+    fetch(`${import.meta.env.VITE_API_URL || ''}/settings`)
       .then(res => res.json())
       .then(data => setSettings(data))
       .catch(console.error);
@@ -26,7 +26,7 @@ export default function SettingsModal({ onClose }) {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await fetch('/settings', {
+      await fetch(`${import.meta.env.VITE_API_URL || ''}/settings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings)

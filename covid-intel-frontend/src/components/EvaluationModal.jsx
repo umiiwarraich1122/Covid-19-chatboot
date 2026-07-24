@@ -5,7 +5,7 @@ export default function EvaluationModal({ onClose }) {
   const [evaluationData, setEvaluationData] = useState([]);
 
   useEffect(() => {
-    fetch('/evaluations')
+    fetch(`${import.meta.env.VITE_API_URL || ''}/evaluations`)
       .then(res => res.json())
       .then(data => setEvaluationData(data.evaluations || []))
       .catch(err => console.error("Error fetching evaluations:", err));

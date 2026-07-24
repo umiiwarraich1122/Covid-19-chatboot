@@ -78,7 +78,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
 
   const fetchDocuments = async () => {
     try {
-      const res = await fetch('/documents');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/documents`);
       const data = await res.json();
       setDocuments(data.documents || []);
       setDocLoading(false);
@@ -90,7 +90,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
 
   const fetchGraphStatus = async () => {
     try {
-      const res = await fetch('/graphrag/export');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/export`);
       const data = await res.json();
       if (data.triples) setTriples(data.triples);
       if (data.canonical_entities) setCanonicalMappings(data.canonical_entities);
@@ -108,7 +108,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setExtracting(true);
     addLog(`Extracting triples for: ${selectedDocs.join(', ')}`);
     try {
-      const res = await fetch('/graphrag/extract', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/extract`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ documents: selectedDocs })
@@ -125,7 +125,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
   const handleReset = async () => {
     if (!window.confirm("Are you sure you want to reset the entire GraphRAG pipeline state?")) return;
     try {
-      await fetch('/graphrag/reset', { method: 'POST' });
+      await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/reset`, { method: 'POST' });
       setTriples([]);
       setCanonicalMappings({});
       setGraphData({ nodes: [], links: [] });
@@ -144,7 +144,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setResolving(true);
     addLog(`Resolving entities...`);
     try {
-      const res = await fetch('/graphrag/resolve', { method: 'POST' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/resolve`, { method: 'POST' });
       const data = await res.json();
       setCanonicalMappings(data.mappings);
       addLog(`Resolved entities. Canonical mappings: ${Object.keys(data.mappings).length}`);
@@ -159,7 +159,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setBuilding(true);
     addLog(`Building NetworkX Graph...`);
     try {
-      const res = await fetch('/graphrag/build', { method: 'POST' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/build`, { method: 'POST' });
       const data = await res.json();
       setGraphStats(data);
       setGraphData({ nodes: data.nodes, links: data.links });
@@ -176,7 +176,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setTraversing(true);
     addLog(`Traversing graph for query: "${queryToUse}"`);
     try {
-      const res = await fetch('/graphrag/traverse', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/traverse`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: queryToUse })
@@ -196,7 +196,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setAnswering(true);
     addLog(`Generating GraphRAG Answer...`);
     try {
-      const res = await fetch('/graphrag/answer', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/answer`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: searchQuery, path_text: subgraph.path_text })
@@ -216,7 +216,7 @@ export default function GraphRAGModal({ onClose, onOpenGlobalSearch }) {
     setComparing(true);
     addLog(`Running Vector vs Graph Compare for: "${queryToUse}"`);
     try {
-      const res = await fetch('/graphrag/compare', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/compare`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: queryToUse })

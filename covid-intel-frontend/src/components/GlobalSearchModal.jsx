@@ -85,7 +85,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
   const fetchDocuments = async () => {
     try {
-      const res = await fetch('/documents');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/documents`);
       const data = await res.json();
       if (data.documents) {
         setDocsCount(data.documents.length);
@@ -95,7 +95,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
   const fetchGraphData = async () => {
     try {
-      const res = await fetch('/graphrag/export');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/export`);
       const data = await res.json();
       if (data.graph_data) setGraphData(data.graph_data);
       if (data.triples) {
@@ -109,7 +109,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
   const fetchCommunities = async () => {
     try {
-      const res = await fetch('/global/communities');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/communities`);
       const data = await res.json();
       setCommunities(data);
     } catch (e) { console.error(e); }
@@ -117,7 +117,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
   const fetchReports = async () => {
     try {
-      const res = await fetch('/global/reports');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/reports`);
       const data = await res.json();
       setReports(data);
     } catch (e) { console.error(e); }
@@ -125,7 +125,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
   const fetchAnalytics = async () => {
     try {
-      const res = await fetch('/global/analytics');
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/analytics`);
       const data = await res.json();
       setAnalytics(data);
     } catch (e) { console.error(e); }
@@ -135,7 +135,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
   const handleRunLouvain = async () => {
     setDetecting(true);
     try {
-      const res = await fetch('/global/louvain', { method: 'POST' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/louvain`, { method: 'POST' });
       const data = await res.json();
       setCommunities(data);
       fetchAnalytics();
@@ -146,7 +146,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
   const handleUpdateCommunityName = async (c_id) => {
     if (!editName) return;
     try {
-      await fetch(`/global/communities/${c_id}/name`, {
+      await fetch(`${import.meta.env.VITE_API_URL || ''}/global/communities/${c_id}/name`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: editName })
@@ -162,7 +162,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
   const handleGenerateReports = async () => {
     setGeneratingReports(true);
     try {
-      const res = await fetch('/global/reports', { method: 'POST' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/reports`, { method: 'POST' });
       const data = await res.json();
       setReports(data);
       fetchAnalytics();
@@ -176,7 +176,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
     setSearchingGlobal(true);
     setGlobalResult(null);
     try {
-      const res = await fetch('/global/search', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: globalQuery })
@@ -196,7 +196,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
     try {
       // 1. Vector & Local Graph
       const t1 = performance.now();
-      const resVL = await fetch('/graphrag/compare', {
+      const resVL = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/compare`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: compareQuery })
@@ -206,7 +206,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
 
       // 2. Global Search
       const t3 = performance.now();
-      const resG = await fetch('/global/search', {
+      const resG = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: compareQuery })
@@ -230,7 +230,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
     setRouteResult(null);
     setRouteExecutionResult(null);
     try {
-      const res = await fetch('/global/route', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/route`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: routerQuery })
@@ -242,7 +242,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
       const t1 = performance.now();
       let execAnswer = "";
       if (data.route === "Vector" || data.route === "Local") {
-        const r = await fetch('/graphrag/compare', {
+        const r = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/compare`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: routerQuery })
@@ -250,7 +250,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
         const ansData = await r.json();
         execAnswer = data.route === "Vector" ? ansData.vector_answer : ansData.graph_answer;
       } else {
-        const r = await fetch('/global/search', {
+        const r = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/search`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: routerQuery })
@@ -269,7 +269,7 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
   const handleRunRouterTest = async () => {
     setTestingRouter(true);
     try {
-      const res = await fetch('/global/test-router', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/test-router`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ test_cases: defaultTestCases })
@@ -284,14 +284,14 @@ export default function GlobalSearchModal({ onClose, onBackToGraphRAG }) {
   const handleRunWinningTest = async () => {
     setWinningTesting(true);
     try {
-      const resVL = await fetch('/graphrag/compare', {
+      const resVL = await fetch(`${import.meta.env.VITE_API_URL || ''}/graphrag/compare`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: winningQuestion })
       });
       const vlData = await resVL.json();
 
-      const resG = await fetch('/global/search', {
+      const resG = await fetch(`${import.meta.env.VITE_API_URL || ''}/global/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: winningQuestion })

@@ -5,7 +5,7 @@ export default function AnalyticsModal({ onClose }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('/analytics')
+    fetch(`${import.meta.env.VITE_API_URL || ''}/analytics`)
       .then(res => res.json())
       .then(d => setData(d))
       .catch(console.error);

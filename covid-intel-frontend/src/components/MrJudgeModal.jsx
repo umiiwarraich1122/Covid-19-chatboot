@@ -19,7 +19,7 @@ export default function MrJudgeModal({ onClose }) {
     for (let i = 0; i < evaluationData.length; i++) {
       const item = evaluationData[i];
       try {
-        const res = await fetch('/judge', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/judge`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

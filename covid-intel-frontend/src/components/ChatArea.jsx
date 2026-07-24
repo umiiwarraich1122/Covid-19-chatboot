@@ -28,7 +28,7 @@ export default function ChatArea({ messages, setMessages }) {
     setMessages([...newMessages, assistantMsg]);
 
     try {
-      const response = await fetch('/chat', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMsg.content })
