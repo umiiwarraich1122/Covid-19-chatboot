@@ -8,3 +8,14 @@ pypdf
 python-multipart
 rank_bm25
 networkx
+supabase
+langchain
+langchain-groq
+langchain-qdrant
+langchain-community
+langchain-huggingface
+python-docx
+numexpr
+fastembed
+langchain-voyageai
+sentence-transformers

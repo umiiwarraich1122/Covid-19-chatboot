@@ -41,7 +41,7 @@ async def chat(req: ChatRequest):
 @app.post("/documents")
 async def upload_document(file: UploadFile = File(...)):
     contents = await file.read()
-    chunks_added = rag.add_document(file.filename, contents)
+    chunks_added = await asyncio.to_thread(rag.add_document, file.filename, contents)
     return {"message": f"Successfully added {file.filename} ({chunks_added} chunks)."}
 
 @app.get("/documents")
@@ -56,6 +56,10 @@ async def delete_document(filename: str):
 @app.get("/analytics")
 async def get_analytics():
     return rag.get_analytics()
+
+@app.get("/evaluations")
+async def get_evaluations():
+    return {"evaluations": rag.get_evaluations()}
 
 @app.get("/settings")
 async def get_settings():
